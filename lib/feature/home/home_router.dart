@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:system_design_app/feature/home/home_router.gr.dart';
+
+import 'home_router.gr.dart';
 
 @AutoRouterConfig()
 class HomeRouter extends $HomeRouter {
