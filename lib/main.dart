@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:system_design_app/feature/home/home_router.dart';
+import 'package:system_design_app/theme/color_schemes.g.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,9 +16,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: lightColorScheme,
         useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+        colorScheme: darkColorScheme,
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false,
       routerConfig: _homeRouter.config(),
     );
   }
