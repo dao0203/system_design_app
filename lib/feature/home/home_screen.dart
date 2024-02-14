@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:system_design_app/feature/home/home_router.gr.dart';
 
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
@@ -14,7 +15,7 @@ class HomeScreen extends HookConsumerWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/detail');
+            AutoRouter.of(context).push(const DetailRoute());
           },
           child: const Text('Go to Detail Screen'),
         ),
