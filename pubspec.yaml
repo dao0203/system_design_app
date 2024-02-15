@@ -11,6 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_inappwebview: ^5.7.2+3
+  webview_flutter: ^4.0.7
+
+
+
 
   cupertino_icons: ^1.0.2
   flutter_hooks: ^0.20.5
@@ -28,12 +33,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-
-dependencies:
-  flutter:
-    sdk: flutter
-  flutter_inappwebview: ^5.7.2+3
-~
-assets:
-  - http://127.0.0.1:5501/maplibre/index3.html
+  assets:
+    - http://127.0.0.1:5500/assets/maplibre/index3.html
