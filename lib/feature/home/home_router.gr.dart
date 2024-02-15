@@ -27,7 +27,7 @@ abstract class $HomeRouter extends _i3.RootStackRouter {
     HomeRoute.name: (routeData) {
       return _i3.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.HomeScreen(),
+        child: _i2.HomeScreen(),
       );
     },
   };
