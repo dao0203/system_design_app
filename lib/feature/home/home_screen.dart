@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:system_design_app/feature/home/home_router.gr.dart';
-import 'package:flutter/material.dart';
 
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
-  List<String> stationList = ['盛岡駅', '滝沢駅', '厨川駅', '青山駅'];
+  List<String> stationList = [
+    '盛岡駅',
+    '滝沢駅',
+    '厨川駅',
+    '青山駅',
+    '野沢駅',
+    'hoge',
+    'hogehoge',
+    'hugahuga',
+    '疲れた'
+  ];
 
   HomeScreen({Key? key}) : super(key: key);
 
@@ -77,15 +86,25 @@ class HomeScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-            Container(
-              // width: MediaQuery.of(context).size.width * 0.7,
-              padding: const EdgeInsets.all(10),
-              height: 200,
+            Expanded(
               child: ListView.builder(
-                //itemCount: stationList.length,
-                itemBuilder: (context, i) => _messageItem(stationList[i]),
+                itemCount: stationList.length - 1, // 最後の要素はペアがないため除外
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title:
+                        Text('${stationList[index]}～${stationList[index + 1]}'),
+                  );
+                },
               ),
-            )
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(const DetailRoute());
+                },
+                child: const Text('Go to Detail Screen'),
+              ),
+            ),
           ],
         ),
       ),
