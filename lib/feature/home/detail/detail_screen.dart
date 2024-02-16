@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-late WebViewController _controller;
-
 @RoutePage()
 class DetailScreen extends HookConsumerWidget {
   final controller = WebViewController()
-    ..loadRequest(
-        Uri.parse('http://127.0.0.1:5500/assets/maplibre/index3.html'));
+    ..loadRequest(Uri.parse('http://10.0.2.2:5500/index2.html'));
 
   DetailScreen({super.key});
   @override
