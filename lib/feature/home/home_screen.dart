@@ -2,11 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:system_design_app/feature/home/home_router.gr.dart';
 
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
-  List<String> stationList = [
+  HomeScreen({super.key});
+
+  final List<String> stationList = [
     '岩手県立大学',
     '岩手県立大学入口',
     '野沢',
@@ -16,8 +17,6 @@ class HomeScreen extends HookConsumerWidget {
     '第三富士見団地口',
     '岩手牧場前',
   ];
-
-  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -107,20 +106,6 @@ class HomeScreen extends HookConsumerWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _messageItem(String title) {
-    return Container(
-      decoration: new BoxDecoration(
-          border: new Border(
-              bottom: const BorderSide(width: 1.0, color: Colors.grey))),
-      child: ListTile(
-        title: Text(
-          title,
-          style: const TextStyle(color: Colors.black, fontSize: 18.0),
         ),
       ),
     );
