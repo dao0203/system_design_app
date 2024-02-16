@@ -13,6 +13,7 @@ class DetailScreen extends StatefulHookConsumerWidget {
 
 class _DetailScreenState extends ConsumerState<DetailScreen> {
   late final WebViewController controller;
+  int _counter = 0;
 
   @override
   void initState() {
@@ -27,7 +28,8 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
           debugPrint('onWebResourceError: $error');
         },
       ))
-      ..loadRequest(Uri.parse('http://10.0.2.2:5500/index.html'));
+      ..loadRequest(
+          Uri.parse('http://10.0.2.2:5500/assets/maplibre/index3.html'));
   }
 
   @override
@@ -35,6 +37,11 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Screen'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onTap,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
       body: Center(
         child: Column(
@@ -54,6 +61,18 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
         ),
       ),
     );
+  }
+
+  void _onTap() async {
+    final result = await showModalBottomSheet<int>(
+        context: context,
+        builder: (context) => SizedBox(
+              height: 200,
+              child: Container(),
+            ));
+    if (result != null) {
+      setState(() => _counter += result);
+    }
   }
 }
 // class DetailScreenState extends HookConsumerWidget {
