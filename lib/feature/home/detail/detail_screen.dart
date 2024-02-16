@@ -2,37 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
-//import 'package:flutter_hooks/flutter_hooks.dart';
 
-// WebViewコントローラー設定
-//WebViewController _controller;
-
-//late WebViewController _controller;
+late WebViewController _controller;
 
 @RoutePage()
 class DetailScreen extends HookConsumerWidget {
   final controller = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(const Color(0x00000000))
-    ..setNavigationDelegate(
-      NavigationDelegate(
-        onProgress: (int progress) {
-          // Update loading bar.
-        },
-        onPageStarted: (String url) {},
-        onPageFinished: (String url) {},
-        onWebResourceError: (WebResourceError error) {},
-        onNavigationRequest: (NavigationRequest request) {
-          if (request.url.startsWith(
-              'http://127.0.0.1:5500/assets/maplibre/index3.html')) {
-            return NavigationDecision.prevent;
-          }
-          return NavigationDecision.navigate;
-        },
-      ),
-    )
     ..loadRequest(
         Uri.parse('http://127.0.0.1:5500/assets/maplibre/index3.html'));
 
@@ -49,16 +24,6 @@ class DetailScreen extends HookConsumerWidget {
         child: Column(
           children: [
             Expanded(
-              // child: WebViewWidget(
-              //   // JavaScriptを適用
-              //   javascriptMode: JavascriptMode.unrestricted,
-              //   // WebView生成時の処理
-              //   onWebViewCreated: (WebViewController webViewController) async {
-              //     _controller = webViewController;
-              //     // HTMLファイル読み込み
-              //     await _loadHtmlFromAssets();
-              //   },
-              // ),
               child: WebViewWidget(
                 controller: controller,
               ),
@@ -75,13 +40,52 @@ class DetailScreen extends HookConsumerWidget {
     );
   }
 
-  Future _loadHtmlFromAssets() async {
-    // ローカルファイルを指定
-    String fileText = await rootBundle
-        .loadString('http://127.0.0.1:5500/assets/maplibre/index3.html');
-    // HTML指定
-    _controller.loadUrl(Uri.dataFromString(fileText,
-            mimeType: 'text/html', encoding: Encoding.getByName('utf8'))
-        .toString());
-  }
+  // Future _loadHtmlFromAssets() async {
+  //   // ローカルファイルを指定
+  //   String fileText =
+  //       await rootBundle.loadString('assets/maplibre/index3.html');
+  //   // HTML指定
+  //   _controller.loadUrl(Uri.dataFromString(fileText,
+  //           mimeType: 'text/html', encoding: Encoding.getByName('utf8'))
+  //       .toString());
+  // }
 }
+
+
+// class MapScreen extends StatefulWidget {
+//   @override
+//   _MapScreenState createState() => _MapScreenState();
+// }
+
+// class _MapScreenState extends State<MapScreen> {
+//   late WebViewController _controller;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Map App'),
+//       ),
+//       body: WebView(
+//         onWebViewCreated: (controller) {
+//           _controller = controller;
+//           _loadHtmlFromAssets();
+//         },
+//         javascriptMode: JavascriptMode.unrestricted,
+//       ),
+//     );
+//   }
+
+//   Future<void> _loadHtmlFromAssets() async {
+//     String fileText = await rootBundle.loadString('assets/maplibre/index3.html');
+//     // final String contentBase64 =
+//     //     base64Encode(const Utf8Encoder().convert(fileText));
+//     // _controller.loadUrl('data:text/html;base64,$contentBase64');
+//     final uri = Uri.dataFromString(
+//       fileText,
+//       mimeType: 'text/html',
+//       encoding: Encoding.getByName('utf-8'),
+//     );
+//     _controller.loadRequest(uri);
+//   }
+// }
