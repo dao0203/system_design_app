@@ -11,8 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_inappwebview: ^5.7.2+3
-  webview_flutter: ^4.0.7
+  webview_flutter: 4.7.0
 
 
 
@@ -34,4 +33,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - http://127.0.0.1:5500/assets/maplibre/index3.html
+    - assets/maplibre/index3.html
