@@ -7,15 +7,14 @@ import 'package:system_design_app/feature/home/home_router.gr.dart';
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
   List<String> stationList = [
-    '盛岡駅',
-    '滝沢駅',
-    '厨川駅',
-    '青山駅',
-    '野沢駅',
-    'hoge',
-    'hogehoge',
-    'hugahuga',
-    '疲れた'
+    '岩手県立大学',
+    '岩手県立大学入口',
+    '野沢',
+    '滝沢駅前',
+    '滝沢東小学校前',
+    '巣子駅入口',
+    '第三富士見団地口',
+    '岩手牧場前',
   ];
 
   HomeScreen({Key? key}) : super(key: key);
@@ -86,6 +85,8 @@ class HomeScreen extends HookConsumerWidget {
                 ],
               ),
             ),
+            Text('履歴',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
             Expanded(
               child: ListView.builder(
                 itemCount: stationList.length - 1, // 最後の要素はペアがないため除外
