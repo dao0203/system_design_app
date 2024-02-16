@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:system_design_app/feature/home/home_router.gr.dart';
 
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
@@ -84,7 +85,7 @@ class HomeScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-            Text('履歴',
+            const Text('履歴',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
             Expanded(
               child: ListView.builder(
