@@ -4,15 +4,34 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 @RoutePage()
-class DetailScreen extends HookConsumerWidget {
-  final controller = WebViewController()
-    ..loadRequest(Uri.parse('http://10.0.2.2:5500/index2.html'));
+class DetailScreen extends StatefulHookConsumerWidget {
+  const DetailScreen({super.key});
 
-  DetailScreen({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // WebViewコントローラー設定
+  ConsumerState<ConsumerStatefulWidget> createState() => _DetailScreenState();
+}
 
+class _DetailScreenState extends ConsumerState<DetailScreen> {
+  late final WebViewController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(NavigationDelegate(
+        onProgress: (progress) {
+          debugPrint('Progress: $progress');
+        },
+        onWebResourceError: (error) {
+          debugPrint('onWebResourceError: $error');
+        },
+      ))
+      ..loadRequest(Uri.parse('http://10.0.2.2:5500/index.html'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Screen'),
@@ -36,6 +55,45 @@ class DetailScreen extends HookConsumerWidget {
       ),
     );
   }
+}
+// class DetailScreenState extends HookConsumerWidget {
+//   final controller = WebViewController()
+//     ..setJavaScriptMode(JavaScriptMode.unrestricted)
+//     ..setNavigationDelegate(NavigationDelegate(
+//       onProgress: (progress) {
+//         debugPrint('Progress: $progress');
+//       },
+//     ))
+//     ..loadRequest(Uri.parse('http://10.0.2.2:5500'));
+
+//   DetailScreen({super.key});
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     // WebViewコントローラー設定
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Detail Screen'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           children: [
+//             Expanded(
+//               child: WebViewWidget(
+//                 controller: controller,
+//               ),
+//             ),
+//             ElevatedButton(
+//               onPressed: () {
+//                 AutoRouter.of(context).pop();
+//               },
+//               child: const Text('Go back to Home Screen'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
 
   // Future _loadHtmlFromAssets() async {
   //   // ローカルファイルを指定
@@ -46,7 +104,7 @@ class DetailScreen extends HookConsumerWidget {
   //           mimeType: 'text/html', encoding: Encoding.getByName('utf8'))
   //       .toString());
   // }
-}
+// }
 
 
 // class MapScreen extends StatefulWidget {
